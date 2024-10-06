@@ -4,75 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Management System</title>
-    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Custom styles */
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensures body takes full height */
+            min-height: 100vh;
         }
 
         .hero {
-            background: url('https://via.placeholder.com/1200x400') no-repeat center center;
+            background: url('../assets/lib.jpg') no-repeat center center;
             background-size: cover;
             color: white;
             padding: 100px 0;
             text-align: center;
+            opacity: 0.7;
         }
 
         .sticky-footer {
-            background-color: #343a40; /* Dark background for footer */
-            color: white; /* White text color */
-            padding: 20px 0; /* Padding for top and bottom */
-            text-align: center; /* Center the text */
-            position: relative; /* Ensure it stays at the bottom */
-            width: 100%; /* Full width */
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            width: 100%;
         }
 
         a.text-white {
-            color: white; /* White color for links */
-            text-decoration: none; /* No underline */
+            color: white;
+            text-decoration: none;
         }
 
         a.text-white:hover {
-            text-decoration: underline; /* Underline on hover for better UX */
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Library Management</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/frontend/html/login.html">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/frontend/html/register.html">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
     <header class="hero">
         <h1 class="display-4">Welcome to the Library</h1>
         <p class="lead">Explore, Borrow, and Enjoy Reading</p>
         <a href="/frontend/html/login.html" class="btn btn-primary btn-lg">Get Started</a>
     </header>
 
-    <!-- Content Section -->
-    <div class="container my-5 flex-grow-1">
+    <div class="container my-5 flex-grow-1 " style="align-items: center;">
         <h2 class="text-center mb-5">Our Features</h2>
         <div class="row">
             <div class="col-md-4">
@@ -93,19 +69,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <i class="fas fa-calendar-alt fa-3x mb-3" style="color: #28a745;"></i>
-                        <h5 class="card-title">Events and Activities</h5>
-                        <p class="card-text">Stay updated on library events, workshops, and reading sessions.</p>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 
-    <!-- Sticky Footer -->
     <footer class="sticky-footer">
         <div class="container">
             <p>&copy; 2024 Library Management System. All rights reserved.</p>
@@ -116,9 +83,7 @@
         </div>
     </footer>
 
-    <!-- Font Awesome for Icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>

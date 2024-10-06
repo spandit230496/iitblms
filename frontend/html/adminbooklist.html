@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrowed Books</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .table-container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="./index.html">Admin Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./adminuserlist.html">User List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./adminbooklist.html">Book List</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actions
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./settings.html">Settings</a>
+                        <button class="dropdown-item logout" onclick="Logout()">Log out</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container table-container">
+        <h2 class="text-center">Books List</h2>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addBookModal">Add Book</button>
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="thead-light">
+                <tr>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="book-list">
+                <!-- Book data will be populated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="addBookModal" tabindex="-1" role="dialog" aria-labelledby="addBookModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addBookModalLabel">Add New Book</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="add-book-form">
+                        <div class="form-group">
+                            <label for="add-title">Title</label>
+                            <input type="text" class="form-control" id="add-title" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="add-author">Author</label>
+                            <input type="text" class="form-control" id="add-author" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="add-isbn">ISBN</label>
+                            <input type="text" class="form-control" id="add-isbn" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="add-status">Status</label>
+                            <input type="text" class="form-control" id="add-status" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Book</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="modal fade" id="addBookModal" tabindex="-1" role="dialog" aria-labelledby="addBookModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addBookModalLabel">Add New Book</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="add-book-form">
+                        <div class="form-group">
+                            <label for="add-title">Title</label>
+                            <input type="text" class="form-control" id="add-title" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="add-author">Author</label>
+                            <input type="text" class="form-control" id="add-author" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="add-isbn">ISBN</label>
+                            <input type="text" class="form-control" id="add-isbn" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="add-status">Status</label>
+                            <input type="text" class="form-control" id="add-status" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Book</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="viewBookModal" tabindex="-1" role="dialog" aria-labelledby="viewBookModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewBookModalLabel">View Book</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h6>Title: <span id="view-title"></span></h6>
+                    <h6>Author: <span id="view-author"></span></h6>
+                    <h6>ISBN: <span id="view-isbn"></span></h6>
+                    <h6>Status: <span id="view-status"></span></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Book</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-form">
+                        <input type="hidden" id="edit-id" />
+                        <div class="form-group">
+                            <label for="edit-title">Title</label>
+                            <input type="text" class="form-control" id="edit-title" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-author">Author</label>
+                            <input type="text" class="form-control" id="edit-author" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-isbn">ISBN</label>
+                            <input type="text" class="form-control" id="edit-isbn" disabled required />
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-status">Status</label>
+                            <input type="text" class="form-control" id="edit-status" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

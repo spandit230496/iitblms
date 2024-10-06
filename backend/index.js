@@ -10,16 +10,11 @@ const verifyToken=require("./middleware/verifyToken")
 
 app.use(cors()); 
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://pgguide.netlify.app', 'http://localhost:3000');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    next();
-});
+
 
 app.use(express.json());
-app.use("/api/v1",verifyToken("LIBRARIAN"),librarianRoutes)
-app.use("/api/v1",verifyToken("MEMBER"),memberRoutes)
+app.use("/api/v1/librarian",verifyToken("librarian"),librarianRoutes)
+app.use("/api/v1/member",verifyToken("member"),verifyToken("librarian"),memberRoutes)
 app.use("/",authRoute)
 
 db;

@@ -34,43 +34,34 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/frontend/html/login.html">Login</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/api-docs">API Docs</a>
-                </li>
+
             </ul>
         </div>
     </nav>
 
     <div class="container register-container">
         <div class="row justify-content-center">
-            <div class="col-md-4">
+            <div class="col-md-8">
                 <div class="card register-card">
                     <div class="card-header bg-success text-white register-header">
                         <h3>Register</h3>
                     </div>
                     <div class="card-body">
-                        <form>
-                            <!-- Role Dropdown -->
+                        <form id="register-form">
                             <div class="form-group">
                                 <label for="role">Select Role</label>
-                                <select class="form-control" id="role" required>
+                                <select class="form-control" id="register-role" required>
                                     <option value="member">Member</option>
                                     <option value="librarian">Librarian</option>
-                                    <option value="admin">Admin</option>
                                 </select>
                             </div>
-                            <!-- Username Input -->
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" placeholder="Choose a username" required>
+                                <input type="text" class="form-control" id="register-username" placeholder="Choose a username" required>
                             </div>
-                            <!-- Password Input -->
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Choose a password" required>
+                                <input type="password" class="form-control" id="register-password" placeholder="Choose a password" required>
                             </div>
                             <button type="submit" class="btn btn-success btn-block">Register</button>
                         </form>
@@ -86,5 +77,6 @@
     <!-- Bootstrap JS and jQuery via CDN -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/script.js"></script> 
 </body>
 </html>

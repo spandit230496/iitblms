@@ -53,6 +53,23 @@ const updateBook = async (req, res) => {
     }
 };
 
+const getBook = async (req, res) => {
+    const { isbn } = req.params;  
+    
+    try {
+        const book = await Book.findOne({ "isbn": isbn });
+
+        if (book) {
+            res.status(200).json({ message: "Book Details Fetched Successfully", book, success: true });
+        } else {
+            res.status(404).json({ message: "No Book Found with Given ISBN", success: false }); 
+        }
+    } catch (error) {
+        res.status(500).json({ message: "Some Error Occurred", success: false });
+    }
+};
+
+
 const deleteBook = async (req, res) => {
     const { isbn } = req.body;
 
@@ -71,6 +88,20 @@ const deleteBook = async (req, res) => {
     }
 };
 
+
+const getBookList = async (req, res) => {
+
+    try {
+        const books = await Book.find({});
+
+
+        
+            res.status(200).json({ message: "Book Fetched succesfully",books:books ,success: true });
+        }
+    catch (error) {
+        res.status(500).json({ message: "Some Error Occurred", success: false });
+    }
+};
 //features for MEMBER
 
 
@@ -96,7 +127,7 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     const { username, password, role } = req.body;
-
+    console.log(username,"---------------------")
     try {
         const userToBeDeleted = await User.findOne({ "username": username });
 
@@ -137,4 +168,4 @@ const getAllUser = async (req, res) => {
 
 
 
-module.exports = { addBook, updateBook, deleteBook, addUser, updateUser, deleteUser, getDeletedUser, getAllUser }
+module.exports = { addBook, updateBook, deleteBook, getBook,getBookList,updateUser, deleteUser, getDeletedUser, getAllUser }

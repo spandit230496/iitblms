@@ -1,10 +1,12 @@
 const express=require("express")
 const route=express.Router()
-const {addBook,updateBook,deleteBook,addUser,updateUser,deleteUser,getDeletedUser,getAllUser}= require("../controller/librarianController")
+const {addBook,updateBook,deleteBook,getBookList,updateUser,deleteUser,getDeletedUser,getAllUser,getBook}= require("../controller/librarianController")
 
 route.post("/add-book",addBook)
 route.post("/update-book",updateBook)
 route.post("/delete-book",deleteBook)
+route.get("/get-books",getBookList)
+route.get("/get-book/:isbn",getBook)
 
 // routes related to member
 
@@ -12,7 +14,7 @@ route.post("/delete-book",deleteBook)
 route.post("/update-member",updateUser)
 route.post("/delete-member",deleteUser)
 route.get("/get-deletedMember",getDeletedUser)
-route.get("/get-user",getAllUser)
+route.get("/get-all-user",getAllUser)
 
 
 
