@@ -127,7 +127,6 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     const { username, password, role } = req.body;
-    console.log(username,"---------------------")
     try {
         const userToBeDeleted = await User.findOne({ "username": username });
 
@@ -165,7 +164,21 @@ const getAllUser = async (req, res) => {
     }
 }
 
+const viewUser = async (req, res) => {
+    try {
+        const {username}=req.body
+
+        const userProfile = await User.find({"username":username});
+        console.log(userProfile)
+        if (userProfile) { 
+            res.status(200).json({ "message": "Account fetched successfully", data: userProfile, success: true });
+        } else {
+            res.status(404).json({ "message": "User not found", success: false });
+        }
+    } catch (error) {
+        res.status(500).json({ message: "An error occurred while retrieving the profile", error: error, success: false });
+    }
+};
 
 
-
-module.exports = { addBook, updateBook, deleteBook, getBook,getBookList,updateUser, deleteUser, getDeletedUser, getAllUser }
+module.exports = { addBook, updateBook, deleteBook, getBook,getBookList,updateUser, deleteUser, getDeletedUser, getAllUser ,viewUser}

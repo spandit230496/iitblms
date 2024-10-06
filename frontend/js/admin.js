@@ -208,7 +208,7 @@ async function handleAddBook(event) {
         if (data.success) {
             alert('Book added successfully.');
             $('#addBookModal').modal('hide');
-            getBooks(); // Refresh the book list
+            getBooks(); 
         } else {
             alert(data.message || 'Failed to add book.');
         }
@@ -318,8 +318,8 @@ function appendDataToTable(data, tableBody, entity) {
             
 
             <td>
-                <button class="btn btn-success btn-sm" onclick="editEntity('${username=val._id}')">Edit</button>
-                <button class="btn btn-danger btn-sm" onclick="viewBook('${val._id}')">View</button>
+                <button class="btn btn-success btn-sm" onclick="editUser('${val.username}')">Edit</button>
+                <button class="btn btn-danger btn-sm" onclick="ViewUser('${username=val.username}')">View</button>
                 <button class="btn btn-danger btn-sm" onclick="deleteUser('${username = val.username}')">Delete</button>
             </td>
         `: `<td>${val.title}</td>
@@ -421,6 +421,41 @@ async function editEntity(isbn = null, username = null) {
     }
 }
 
+async function editUser(username) {
+    const token = localStorage.getItem("token");
+
+
+    try {
+        const response = await fetch(`${BASE_URL}/api/v1/librarian/get-user`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                }
+                ,
+                body:JSON.stringify({"username":username})
+            });
+
+            
+            const data = await response.json();
+            console.log(data,"-----------------")
+            
+            
+                document.getElementById('edit-username').innerHTML = data.data[0].role;
+                document.getElementById('edit-role').val = data.data.role;
+
+            $('#editUserModal').modal('show');
+
+        
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again later.');
+    }
+}
+
+
+
 
 async function View(isbn = null, username = null) {
     const token = localStorage.getItem("token");
@@ -450,7 +485,7 @@ async function View(isbn = null, username = null) {
                 document.getElementById('view-role').innerHTML = data.user.role;
             }
 
-            $('#viewBookModal').modal('show');
+            isbn?$('#viewBookModal').modal('show'):$('#viewUserModal').modal('show');
 
             document.getElementById('edit-id').value = isbn || username;
         } else {
@@ -461,6 +496,44 @@ async function View(isbn = null, username = null) {
         alert('An error occurred. Please try again later.');
     }
 }
+
+async function ViewUser(username) {
+    const token = localStorage.getItem("token");
+
+    try {
+        const response = await fetch(
+            `${BASE_URL}/api/v1/librarian/get-user`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                }
+                ,
+                body:JSON.stringify({"username":username})
+            });
+
+            const data = await response.json();
+            console.log(data)
+
+        if (data.success) {
+           
+                document.getElementById('view-username').innerHTML = data.data[0].username;
+                document.getElementById('view-role').innerHTML = data.data[0].role;
+            
+
+                $('#viewUserModal').modal('show')
+
+        } else {
+            alert(data.message || 'Failed to fetch data for editing.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again later.');
+    }
+}
+
+
 async function getUser() {
     const token = localStorage.getItem("token");
     const tableBody = document.getElementById('user-list');
@@ -534,6 +607,11 @@ Array.from(logoutButtons).forEach(button => {
 });
 
 document.getElementById('adduser')?.addEventListener('submit', handleRegister);
+document.getElementById('addBookModal')?.addEventListener('submit', handleAddBook);
+
+document.getElementById('edit-user-form')?.addEventListener('submit', editUser);
+
+
 
 
 

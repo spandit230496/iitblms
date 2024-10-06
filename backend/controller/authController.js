@@ -47,6 +47,10 @@ const loginUser = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
+    if(existingUser.role!=role){
+      return res.status(403).json({ message: "use correct role for login" ,succes:false});
+    }
+
     if(!existingUser.isActive){
       return res.status(403).json({ message: "Your Account HAs Been Deleted,Contact Admin" ,succes:false});
     }

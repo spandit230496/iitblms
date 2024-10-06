@@ -55,7 +55,7 @@
                 </tr>
             </thead>
             <tbody id="user-list">
-                <!-- User list items will be populated here -->
+
             </tbody>
         </table>
     </div>
@@ -90,6 +90,39 @@
         </div>
     </div>
 
+
+    <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-user-form">
+                        <div class="form-group">
+                            <label for="edit-username">User Name</label>
+                            <input type="text" class="form-control" id="edit-username" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-password">Password</label>
+                            <input type="password" class="form-control" id="edit-password" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-role">Role</label>
+                            <input type="text" class="form-control" id="edit-role" required />
+                        </div>
+                        <button action="submit" class="btn btn-primary">Update User</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
     <div class="modal fade" id="viewUserModal" tabindex="-1" role="dialog" aria-labelledby="viewUserModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -101,7 +134,7 @@
                 </div>
                 <div class="modal-body">
                     <h6>User Name: <span id="view-username"></span></h6>
-                    <h6>Status: <span id="view-status"></span></h6>
+                    <h6>Role: <span id="view-role"></span></h6>
                 </div>
             </div>
         </div>
