@@ -1,24 +1,31 @@
-const jwt=require("jsonwebtoken")
-const secret="123456"
+const jwt = require("jsonwebtoken");
+const secret = "123456";
 
-const verifyToken=(role)=>{
-    return function (req,res,next){
-        const token=req.headers["authorization"];
+const verifyToken = (...roles) => {
+    return function (req, res, next) {
+        console.log(roles);
 
-        if(!token) return res.status(401).send({"message":"Token is missing"})
+        const token = req.headers["authorization"];
 
-        try{
-            const decoded=jwt.verify(token.split(" ")[1],secret)
-            if(decoded.role!=role){
-                return res.status(403).send({"message":"You are not authorized"})
-            }
-            req.user=decoded
-            next();
+        if (!token) {
+            return res.status(401).send({ "message": "Token is missing" });
         }
-        catch(error){
-            return  res.status(401).send({"message":"Token is expired or invalid"})
+
+        try {
+            const decoded = jwt.verify(token.split(" ")[1], secret);
+            console.log("decoded", decoded);
+            console.log("decoded role", decoded.role);
+
+            if (!roles.includes(decoded.role)) {
+                return res.status(403).send({ "message": "You are not authorized" });
+            }
+
+            req.user = decoded;
+            next();
+        } catch (error) {
+            return res.status(401).send({ "message": "Token is expired or invalid" });
         }
     }
 }
 
-module.exports=verifyToken
+module.exports = verifyToken;

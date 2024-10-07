@@ -1,4 +1,5 @@
-const BASE_URL = "https://iitblms-2.onrender.com";
+// const BASE_URL = "https://iitblms-2.onrender.com";
+const BASE_URL = "http://localhost:5000";
 
 async function handleRegister(event) {
     event.preventDefault();
@@ -20,7 +21,7 @@ async function handleRegister(event) {
 
         if (data.success) {
             alert('Registration successful! You can now log in.');
-            window.location.href = '/frontend/html/login.html'; 
+            window.location.href = './login.html'; 
         } else {
             alert(data.message || 'Registration failed. Please try again.');
         }
@@ -51,7 +52,7 @@ async function handleLogin(event) {
             localStorage.setItem("token", data.token);
             localStorage.setItem("role", data.role); // Store role in localStorage
 
-            window.location.href = data.role === "member" ? '/frontend/html/dashboard_member.html' : "/frontend/html/dashboard_librarian.html";
+            window.location.href = data.role === "member" ? './dashboard_member.html' : "./dashboard_librarian.html";
         } else {
             alert(data.message || 'Some error occurred. Please try again.');
         }
@@ -304,7 +305,7 @@ function Logout() {
     if (logout) {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
-        window.location.href = "/frontend/html/index.html";
+        window.location.href = "./index.html";
     }
 }
 

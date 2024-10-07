@@ -49,7 +49,7 @@ async function handleRegister(event) {
 
         if (data.success) {
             alert('Registration successful! You can now log in.');
-            window.location.href = '/frontend/html/login.html';
+            window.location.href = './login.html';
         } else {
             alert(data.message || 'Registration failed. Please try again.');
         }
@@ -597,7 +597,7 @@ function Logout() {
     if (logout) {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
-        window.location.href = "/frontend/html/index.html";
+        window.location.href = "./index.html";
     }
 }
 
