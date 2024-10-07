@@ -14,7 +14,7 @@ app.use(cors());
 
 app.use(express.json());
 app.use("/api/v1/librarian",verifyToken("librarian"),librarianRoutes)
-app.use("/api/v1/member",verifyToken('member' , 'librarian'),memberRoutes)
+app.use("/api/v1/member",verifyToken('member','librarian'),memberRoutes)
 app.use("/",authRoute)
 
 db;

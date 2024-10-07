@@ -1,6 +1,6 @@
-const BASE_URL = "https://iitblms-2.onrender.com";
+// const BASE_URL = "https://iitblms-2.onrender.com";
 
-// const BASE_URL = "http://localhost:5000";
+const BASE_URL = "http://localhost:5000";
 
 
 async function handleRegister(event) {
@@ -567,6 +567,39 @@ async function getUser() {
     }
 }
 
+async function getArchivedUser() {
+    const token = localStorage.getItem("token");
+    const tableBody = document.getElementById('acr-user-list');
+
+
+
+    if (!tableBody) return;
+
+    try {
+        const response = await fetch(`${BASE_URL}/api/v1/librarian/get-deleted-member`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json();
+
+        console.log(data)
+
+        if (data.success) {
+            console.log(data);
+            appendDataToTable(data.user, tableBody, "user");
+        } else {
+            alert(data.message || 'Failed to fetch books.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again later.');
+    }
+}
+
 
 async function saveEntity(isbn = null, username = null) {
     const token = localStorage.getItem("token");
@@ -621,6 +654,7 @@ document.getElementById('edit-user-form')?.addEventListener('submit', editUser);
 
 getUser();
 getBooks();
+getArchivedUser()
 
 
 

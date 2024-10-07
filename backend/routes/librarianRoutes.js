@@ -14,7 +14,7 @@ route.get("/get-book/:isbn",getBook)
 
 route.post("/update-member",updateUser)
 route.post("/delete-member",deleteUser)
-route.get("/get-deletedMember",getDeletedUser)
+route.get("/get-deleted-member",getDeletedUser)
 route.get("/get-all-user",getAllUser)
 route.post("/get-user",viewUser)
 
