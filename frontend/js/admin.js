@@ -1,5 +1,7 @@
 const BASE_URL = "https://iitblms-2.onrender.com";
 
+// const BASE_URL = "http://localhost:5000";
+
 
 async function handleRegister(event) {
     event.preventDefault();
